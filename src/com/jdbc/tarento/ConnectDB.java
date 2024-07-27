@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.lang.*;
 
 public class ConnectDB {
 
@@ -59,6 +60,11 @@ public class ConnectDB {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    public void createTable(Connection con,String tableName){
+
+        
     }
 }
 
