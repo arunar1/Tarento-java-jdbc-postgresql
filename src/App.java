@@ -31,9 +31,9 @@ public class App {
                 case 1:
                     System.out.print("Enter the employee name:");
                     String name = sc.nextLine();
-                    System.out.println(name);
-                    // int id = sc.nextInt();
-                    // db.insertData(con, name,id);
+                    System.out.println("Enter the employee id :");
+                    int id = sc.nextInt();
+                    db.insertData(con, name,id);
                     break;
 
                 case 2:
@@ -90,9 +90,9 @@ public class App {
 
             System.out.println("Do you want to continue if Yes enter Y/y :");
 
-            ch=sc.nextLine();
+            ch=sc.next();
 
-        } while (ch=="y" || ch=="Y");
+        } while (ch.equalsIgnoreCase("y"));
 
         sc.close();
 
