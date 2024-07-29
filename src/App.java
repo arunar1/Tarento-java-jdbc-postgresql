@@ -58,28 +58,41 @@ public class App {
                     break;
 
                     case 5:
-                        System.out.println("Enter the table name");
-                        String tableName= sc.nextLine();
-                        System.out.println("Enter the number of Attributes :");
-                        int n=sc.nextInt();
+                        System.out.println("Enter the table name: ");
+                        String tableName = sc.nextLine();
+                        System.out.println("Enter the number of attributes: ");
+                        int n = sc.nextInt();
+                        sc.nextLine(); 
 
                         String[] tableAtri = new String[n];
-                        System.out.println("Enter the Attribute seperated by coma's :");
-
-                        tableAtri= sc.next().split(",");
-
-                        for( int i=0;i<tableAtri.length;i++){
-                            System.out.println((i+1)+": "+tableAtri[i]);
+                        for (int i = 0; i < n; i++) {
+                            System.out.println("Enter attribute " + (i + 1) + " (name and datatype, e.g., 'id INT'): ");
+                            tableAtri[i] = sc.nextLine();
                         }
 
-                        System.out.println("Select the Primary key from above by inputing corresponding index :");
+                        System.out.println("Attributes:");
+                        for (int i = 0; i < tableAtri.length; i++) {
+                            System.out.println((i + 1) + ": " + tableAtri[i]);
+                        }
 
-                        int index= sc.nextInt();
+                        System.out.println("Select the primary key from above by entering the corresponding index: ");
+                        int index = sc.nextInt();
+                        sc.nextLine(); 
 
-                        String primeKey= tableAtri[index-1];
-  
+                        String primeKey = tableAtri[index - 1].split(" ")[0]; 
+                        String createTableSQL = "CREATE TABLE " + tableName + " (";
+                        for (int i = 0; i < tableAtri.length; i++) {
+                            createTableSQL += tableAtri[i];
+                            if (i < tableAtri.length - 1) {
+                                createTableSQL += ", ";
+                            }
+                        }
+                        createTableSQL += ", PRIMARY KEY (" + primeKey + "));";
 
-                        db.createTable(con, tableName);
+                        System.out.println(createTableSQL);
+
+                        db.createTable(con, createTableSQL);
+                        break;
 
 
                 default:

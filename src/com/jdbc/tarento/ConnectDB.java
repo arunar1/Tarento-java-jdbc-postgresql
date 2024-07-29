@@ -62,7 +62,17 @@ public class ConnectDB {
         }
     }
 
-    public void createTable(Connection con,String tableName){
+    public void createTable(Connection con,String sql){
+        Statement statement;
+
+        try {
+            statement = con.createStatement();
+            statement.executeUpdate(sql);
+            System.out.println("Table created Successfully.");
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
         
     }
