@@ -1,10 +1,5 @@
 package com.jdbc.tarento;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.lang.*;
+import java.sql.*;
 
 public class ConnectDB {
 
@@ -76,8 +71,31 @@ public class ConnectDB {
 
         
     }
-    public void deleteData(Connection con ,String tableName){
-        
+    public void deleteData(Connection con ,String tableName,String sql){
+
+     Statement statement = null;
+
+    try {
+        statement = con.createStatement();
+        int rowsAffected = statement.executeUpdate(sql); 
+        System.out.println("Rows deleted: " + rowsAffected);
+        if(rowsAffected==0){
+            System.out.println("No matching found");
+        }
+        else{
+            System.out.println("Deleted Succssfully");
+        }
+    } catch (SQLException e) {
+        System.out.println("Error executing DELETE operation: " + e.getMessage());
+    } finally {
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                System.out.println("Error closing statement: " + e.getMessage());
+            }
+        }
+    }
     }
 }
 
