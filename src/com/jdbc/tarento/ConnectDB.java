@@ -76,6 +76,9 @@ public class ConnectDB {
 
         
     }
+    public void deleteData(Connection con ,String tableName){
+        
+    }
 }
 
 

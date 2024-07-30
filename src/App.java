@@ -1,7 +1,9 @@
 import java.sql.Connection;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 import com.jdbc.tarento.ConnectDB;
+import com.jdbc.tarento.GetTable;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -37,7 +39,17 @@ public class App {
                     break;
 
                 case 2:
-
+                    GetTable tables = new GetTable();
+                    ArrayList<String> tableNames = tables.getTable(con);
+                    System.out.println("Tables in the database:");
+                    for (int i = 0; i < tableNames.size(); i++) {
+                        System.out.println(i+1 + " : " + tableNames.get(i)); 
+                    }
+                    System.out.print("Enter the table name index: ");
+                    int index = sc.nextInt();
+                    sc.nextLine();
+                    String selectedTable = tableNames.get(index-1); 
+                    System.out.println("Selected Table : "+selectedTable);
                     break;
 
                 case 3:
@@ -76,7 +88,7 @@ public class App {
                         }
 
                         System.out.println("Select the primary key from above by entering the corresponding index: ");
-                        int index = sc.nextInt();
+                        index = sc.nextInt();
                         sc.nextLine(); 
 
                         String primeKey = tableAtri[index - 1].split(" ")[0]; 
